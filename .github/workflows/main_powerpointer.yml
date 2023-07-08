@@ -23,7 +23,7 @@ jobs:
       with:
         files: '["app.py"]'
       env:
-        OPEN_API_KEY: ${{ secrets.OpenApiKey }}
+        OPEN_API_KEY: ${{ secrets.OPENAPIKEY }}
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
