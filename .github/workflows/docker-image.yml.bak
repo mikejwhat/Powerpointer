@@ -27,7 +27,7 @@ jobs:
         with:
           files: '["app.py"]'
         env:
-          OPEN_API_KEY: ${{ secrets.OpenApiKey }}
+          OPEN_API_KEY: ${{ secrets.OPENAPIKEY }}
       
       - name: 'Build and push image'
         uses: azure/docker-login@v1

@@ -21,7 +21,7 @@ jobs:
 
     - uses: cschleiden/replace-tokens@v1
       with:
-        files: '["app.py"]'
+        files: '["Dockerfile"]'
       env:
         OPEN_API_KEY: ${{ secrets.OPENAPIKEY }}
 
