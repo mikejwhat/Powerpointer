@@ -19,6 +19,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - uses: cschleiden/replace-tokens@v1
+      with:
+        files: '["app.py"]'
+      env:
+        OPEN_API_KEY: ${{ secrets.OpenApiKey }}
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
