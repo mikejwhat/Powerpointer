@@ -17,10 +17,13 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+    - uses: actions/checkout@v3.5.3
+        
+    - uses: cschleiden/replace-tokens@v1
+      with:
+        files: '["Dockerfile"]'
+      env:
+        OPEN_API_KEY: ${{ secrets.OPENAPIKEY }}
 
     - name: Log in to registry
       uses: docker/login-action@v2
@@ -28,12 +31,6 @@ jobs:
         registry: https://powerpointer.azurecr.io/
         username: ${{ secrets.AzureAppService_ContainerUsername_0ef5f277c3ed497cb46ab65c9b0ac886 }}
         password: ${{ secrets.AzureAppService_ContainerPassword_b5cbb17576c6467285055b3913f490d8 }}
-
-    - uses: cschleiden/replace-tokens@v1
-      with:
-        files: '["Dockerfile"]'
-      env:
-        OPEN_API_KEY: ${{ secrets.OPENAPIKEY }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
