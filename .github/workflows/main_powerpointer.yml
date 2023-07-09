@@ -17,11 +17,11 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - uses: cschleiden/replace-tokens@v1
       with:
-        files: '["app.py"]'
+        files: '["Dockerfile"]'
       env:
         OPEN_API_KEY: ${{ secrets.OPENAPIKEY }}
 
@@ -36,8 +36,9 @@ jobs:
         password: ${{ secrets.AzureAppService_ContainerPassword_b5cbb17576c6467285055b3913f490d8 }}
 
     - name: Build and push container image to registry
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v4
       with:
+        context: .
         push: true
         tags: powerpointer.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_0ef5f277c3ed497cb46ab65c9b0ac886 }}/powerpointer:${{ github.sha }}
         file: ./Dockerfile
