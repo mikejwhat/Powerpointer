@@ -9,6 +9,8 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
+ENV OPEN_API_KEY "#{OPEN_API_KEY}#"
+
 ENV FLASK_RUN_PORT 4343
 
 EXPOSE 4343
